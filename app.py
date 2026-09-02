@@ -210,30 +210,50 @@ st.markdown("---")
 # SKILLS
 st.markdown('<h2 id="skills" class="section-title">💻 Stack Tecnológico & Skills</h2>', unsafe_allow_html=True)
 
-skills = [
-    ("🐍", "Python"),
-    ("⚡", "Flask"),
-    ("💾", "SQL/SQLite"),
-    ("🎨", "HTML/CSS"),
-    ("✨", "JavaScript"),
-    ("🤖", "IA/ML"),
-    ("📊", "Data Analysis"),
-    ("🔐", "Seguridad"),
-    ("📄", "OCR/PDF"),
-    ("🔄", "Conciliación"),
-    ("📈", "Visualización"),
-    ("🚀", "Automatización"),
-]
+def show_technologies(title, technologies):
+    st.markdown(f'<h3 style="color: #00d9ff; margin: 2rem 0 1.25rem;">{title}</h3>', unsafe_allow_html=True)
+    columns = st.columns(6)
+    for index, (name, logo_url) in enumerate(technologies):
+        with columns[index % 6]:
+            st.image(logo_url, width=58)
+            st.markdown(
+                f'<p style="text-align: center; color: #e0e0e0; font-size: 0.9rem; min-height: 2.5rem;">{name}</p>',
+                unsafe_allow_html=True,
+            )
 
-cols = st.columns(4)
-for i, (icon, skill) in enumerate(skills):
-    with cols[i % 4]:
-        st.markdown(f"""
-            <div class="tech-item">
-                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">{icon}</div>
-                <p style="color: #e0e0e0; font-size: 0.9rem;">{skill}</p>
-            </div>
-        """, unsafe_allow_html=True)
+
+show_technologies("Herramientas que manejo", [
+    ("Python", "https://cdn.simpleicons.org/python/3776AB"),
+    ("Flask", "https://cdn.simpleicons.org/flask/FFFFFF"),
+    ("SQLite", "https://cdn.simpleicons.org/sqlite/003B57"),
+    ("Pandas", "https://cdn.simpleicons.org/pandas/150458"),
+    ("Excel", "https://cdn.simpleicons.org/microsoftexcel/217346"),
+    ("Git", "https://cdn.simpleicons.org/git/F05032"),
+    ("Docker", "https://cdn.simpleicons.org/docker/2496ED"),
+    ("OpenAI", "https://cdn.simpleicons.org/openai/FFFFFF"),
+    ("OCR / PDF", "https://cdn.simpleicons.org/adobeacrobatreader/EC1C24"),
+])
+
+show_technologies("Visualización y dashboards", [
+    ("Plotly", "https://cdn.simpleicons.org/plotly/3F4F75"),
+    ("Matplotlib", "https://cdn.simpleicons.org/matplotlib/11557C"),
+    ("Streamlit", "https://cdn.simpleicons.org/streamlit/FF4B4B"),
+])
+
+show_technologies("Tecnologías en crecimiento", [
+    ("PostgreSQL", "https://cdn.simpleicons.org/postgresql/4169E1"),
+    ("SQLAlchemy", "https://cdn.simpleicons.org/sqlalchemy/D71F00"),
+    ("Claude", "https://cdn.simpleicons.org/claude/D97757"),
+    ("Gunicorn", "https://cdn.simpleicons.org/gunicorn/499848"),
+    ("Nginx", "https://cdn.simpleicons.org/nginx/009639"),
+    ("AWS", "https://cdn.simpleicons.org/amazonaws/FF9900"),
+    ("Railway", "https://cdn.simpleicons.org/railway/FFFFFF"),
+    ("Vercel", "https://cdn.simpleicons.org/vercel/FFFFFF"),
+    ("GitHub Actions", "https://cdn.simpleicons.org/githubactions/2088FF"),
+    ("pytest", "https://cdn.simpleicons.org/pytest/0A9EDC"),
+    ("REST API", "https://cdn.simpleicons.org/fastapi/009688"),
+    ("Swagger / OpenAPI", "https://cdn.simpleicons.org/swagger/85EA2D"),
+])
 
 st.markdown("---")
 
