@@ -26,6 +26,30 @@ st.markdown("""
     }
 
     .main .block-container { max-width: 1180px; padding-top: 2rem; }
+
+    [data-testid="stMarkdownContainer"],
+    [data-testid="stMarkdownContainer"] p,
+    [data-testid="stMarkdownContainer"] li {
+        color: #dce8ff !important;
+    }
+
+    [data-testid="stMarkdownContainer"] strong {
+        color: #ffffff !important;
+    }
+
+    [data-testid="stTextInput"] label,
+    [data-testid="stTextArea"] label,
+    [data-testid="stSelectbox"] label {
+        color: #dce8ff !important;
+        font-weight: 600 !important;
+    }
+
+    .project-card p,
+    .project-card strong {
+        color: #dce8ff !important;
+    }
+
+    .project-card h3 { color: #7de3ff !important; }
     
     .hero-section {
         text-align: center;
@@ -121,6 +145,14 @@ st.markdown("""
         line-height: 1.2;
         text-align: center;
         margin: 0;
+    }
+
+    .stTextInput input,
+    .stTextArea textarea,
+    [data-baseweb="select"] > div {
+        color: #ffffff !important;
+        background-color: rgba(8, 13, 33, 0.78) !important;
+        border-color: rgba(125, 227, 255, 0.35) !important;
     }
 
     @media (max-width: 900px) {
