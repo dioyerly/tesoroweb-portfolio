@@ -299,7 +299,7 @@ if gallery_images:
     with image_area:
         current_index = st.session_state.project_image_index % len(gallery_images)
         caption, image_path = gallery_images[current_index]
-        st.image(str(image_path), caption=caption, use_container_width=True)
+        st.image(str(image_path), caption=caption, width=760)
         st.markdown(
             f'<p class="gallery-counter">{current_index + 1} / {len(gallery_images)} · Usa las flechas para explorar</p>',
             unsafe_allow_html=True,
