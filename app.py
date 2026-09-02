@@ -1,4 +1,5 @@
 from pathlib import Path
+from urllib.parse import quote
 
 import streamlit as st
 
@@ -13,9 +14,18 @@ st.set_page_config(
 st.markdown("""
     <style>
     body {
-        background-color: #0a0e27;
+        background: #080d21;
         color: #e0e0e0;
     }
+
+    .stApp {
+        background:
+            radial-gradient(circle at 8% 18%, rgba(0, 217, 255, 0.12), transparent 24rem),
+            radial-gradient(circle at 92% 48%, rgba(157, 78, 221, 0.13), transparent 26rem),
+            linear-gradient(135deg, #080d21 0%, #101936 52%, #150f2e 100%);
+    }
+
+    .main .block-container { max-width: 1180px; padding-top: 2rem; }
     
     .hero-section {
         text-align: center;
@@ -41,11 +51,11 @@ st.markdown("""
     }
     
     .section-title {
-        font-size: 2.5rem;
+        font-size: 2.15rem;
         background: linear-gradient(135deg, #00d9ff, #9d4edd);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
         text-align: center;
     }
     
@@ -64,31 +74,31 @@ st.markdown("""
     
     .tech-group-title {
         color: #7de3ff !important;
-        font-size: 1.35rem;
+        font-size: 1.15rem;
         font-weight: 700;
-        margin: 2.2rem 0 1rem;
+        margin: 1.5rem 0 0.8rem;
         letter-spacing: 0;
     }
 
     .tech-grid {
         display: grid;
         grid-template-columns: repeat(6, minmax(0, 1fr));
-        gap: 0.9rem;
-        margin-bottom: 1.5rem;
+        gap: 0.7rem;
+        margin-bottom: 1rem;
     }
 
     .tech-card {
-        min-height: 132px;
+        min-height: 108px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 0.75rem;
-        padding: 1rem 0.65rem;
-        background: linear-gradient(145deg, #111a3b, #18265a);
+        gap: 0.5rem;
+        padding: 0.7rem 0.45rem;
+        background: linear-gradient(145deg, rgba(17, 26, 59, 0.9), rgba(24, 38, 90, 0.72));
         border: 1px solid rgba(125, 227, 255, 0.3);
         border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
         transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
@@ -99,14 +109,14 @@ st.markdown("""
     }
 
     .tech-logo {
-        width: 54px;
-        height: 54px;
+        width: 44px;
+        height: 44px;
         object-fit: contain;
     }
 
     .tech-name {
         color: #ffffff !important;
-        font-size: 0.84rem;
+        font-size: 0.78rem;
         font-weight: 600;
         line-height: 1.2;
         text-align: center;
@@ -120,6 +130,29 @@ st.markdown("""
     @media (max-width: 520px) {
         .tech-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
+
+    .contact-panel {
+        padding: 1.5rem;
+        background: linear-gradient(145deg, rgba(14, 25, 58, 0.92), rgba(31, 17, 57, 0.88));
+        border: 1px solid rgba(125, 227, 255, 0.28);
+        border-radius: 14px;
+        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-link {
+        display: block;
+        padding: 0.8rem;
+        color: #ffffff !important;
+        text-align: center;
+        text-decoration: none !important;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(125, 227, 255, 0.22);
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+    .contact-link:hover { border-color: #7de3ff; background: rgba(0, 217, 255, 0.12); }
+    .contact-link img { width: 25px; height: 25px; vertical-align: middle; margin-right: 0.45rem; }
     
     .stButton > button {
         background: linear-gradient(135deg, #00d9ff, #3a86ff) !important;
@@ -282,32 +315,18 @@ show_technologies("Herramientas que manejo", [
     ("CSS3", "https://cdn.simpleicons.org/css/1572B6"),
     ("JavaScript", "https://cdn.simpleicons.org/javascript/F7DF1E"),
     ("Git", "https://cdn.simpleicons.org/git/F05032"),
-    ("Docker", "https://cdn.simpleicons.org/docker/2496ED"),
+    ("GitHub", "https://cdn.simpleicons.org/github/FFFFFF"),
     ("OpenAI", "https://cdn.simpleicons.org/openai/FFFFFF"),
-    ("OCR / PDF", "https://cdn.simpleicons.org/adobeacrobatreader/EC1C24"),
-])
-
-show_technologies("Visualización y dashboards", [
-    ("Plotly", "https://cdn.simpleicons.org/plotly/3F4F75"),
-    ("Matplotlib", "https://cdn.simpleicons.org/matplotlib/11557C"),
     ("Streamlit", "https://cdn.simpleicons.org/streamlit/FF4B4B"),
+    ("OCR / PDF", "https://api.iconify.design/mdi:file-search-outline.svg?color=%237DE3FF"),
 ])
 
 show_technologies("Tecnologías en crecimiento", [
-    ("PostgreSQL", "https://cdn.simpleicons.org/postgresql/4169E1"),
     ("SQLAlchemy", "https://cdn.simpleicons.org/sqlalchemy/D71F00"),
     ("Claude", "https://cdn.simpleicons.org/claude/D97757"),
-    ("Gunicorn", "https://cdn.simpleicons.org/gunicorn/499848"),
-    ("Nginx", "https://cdn.simpleicons.org/nginx/009639"),
-    ("SMTP", "https://cdn.simpleicons.org/maildotru/168DE2"),
-    ("Celery", "https://cdn.simpleicons.org/celery/37814A"),
-    ("APScheduler", "https://cdn.simpleicons.org/clockify/03A9F4"),
-    ("JWT", "https://cdn.simpleicons.org/jsonwebtokens/000000"),
-    ("AWS", "https://cdn.simpleicons.org/amazonaws/FF9900"),
     ("Railway", "https://cdn.simpleicons.org/railway/FFFFFF"),
     ("Vercel", "https://cdn.simpleicons.org/vercel/FFFFFF"),
     ("GitHub Actions", "https://cdn.simpleicons.org/githubactions/2088FF"),
-    ("pytest", "https://cdn.simpleicons.org/pytest/0A9EDC"),
     ("REST API", "https://cdn.simpleicons.org/fastapi/009688"),
     ("Swagger / OpenAPI", "https://cdn.simpleicons.org/swagger/85EA2D"),
 ])
@@ -315,26 +334,29 @@ show_technologies("Tecnologías en crecimiento", [
 st.markdown("---")
 
 # CONTACTO
-st.markdown('<h2 id="contacto" class="section-title">📞 Contacto</h2>', unsafe_allow_html=True)
+st.markdown('<h2 id="contacto" class="section-title">📞 Conectemos</h2>', unsafe_allow_html=True)
 
-st.markdown("""
-    <div style="text-align: center; padding: 2rem;">
-        <p style="font-size: 1.1rem; color: #b0b0b0; margin-bottom: 2rem;">
-            ¿Interesado en trabajar juntos? Conectemos
-        </p>
-    </div>
-""", unsafe_allow_html=True)
+contact_left, contact_right = st.columns([0.85, 1.15], gap="large")
+with contact_left:
+    st.markdown('<div class="contact-panel">', unsafe_allow_html=True)
+    st.markdown('<p style="color: #c9d6ff; margin-top: 0;">Cuéntame qué proceso quieres automatizar o qué producto digital tienes en mente.</p>', unsafe_allow_html=True)
+    st.markdown('<a class="contact-link" href="https://wa.me/5811126425994" target="_blank"><img src="https://cdn.simpleicons.org/whatsapp/25D366">WhatsApp</a>', unsafe_allow_html=True)
+    st.markdown('<br><a class="contact-link" href="https://www.linkedin.com/in/dioyerly-rodriguez-349992255/" target="_blank"><img src="https://cdn.simpleicons.org/linkedin/0A66C2">LinkedIn</a>', unsafe_allow_html=True)
+    st.markdown('<br><a class="contact-link" href="https://github.com/dioyerly/tesoroweb-portfolio" target="_blank"><img src="https://cdn.simpleicons.org/github/FFFFFF">GitHub</a>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.markdown("[💬 WhatsApp](https://wa.me/5811126425994)")
-
-with col2:
-    st.markdown("[📧 Email](mailto:dioyer321@gmail.com)")
-
-with col3:
-    st.markdown("[🔗 LinkedIn](https://www.linkedin.com/in/dioyerly-rodriguez-349992255/)")
+with contact_right:
+    with st.form("contact_form", clear_on_submit=False):
+        name = st.text_input("Tu nombre")
+        email = st.text_input("Tu correo")
+        topic = st.selectbox("¿En qué te puedo ayudar?", ["Automatización", "Análisis de datos", "TESOROWEB", "Otro proyecto"])
+        message = st.text_area("Cuéntame brevemente tu idea", height=120)
+        submitted = st.form_submit_button("✉️ Preparar mensaje")
+        if submitted:
+            subject = quote(f"Consulta sobre {topic}")
+            body = quote(f"Hola Dioyerly, soy {name}.\n\nMi correo: {email}\n\n{message}")
+            st.success("Tu mensaje está listo para enviarse desde tu correo.")
+            st.markdown(f'[Abrir correo con el mensaje preparado](mailto:dioyer321@gmail.com?subject={subject}&body={body})')
 
 st.markdown("---")
 
