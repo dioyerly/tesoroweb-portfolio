@@ -1,6 +1,4 @@
 from pathlib import Path
-from urllib.parse import quote
-
 import streamlit as st
 
 st.set_page_config(
@@ -185,6 +183,46 @@ st.markdown("""
 
     .contact-link:hover { border-color: #7de3ff; background: rgba(0, 217, 255, 0.12); }
     .contact-link img { width: 25px; height: 25px; vertical-align: middle; margin-right: 0.45rem; }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+        padding: 1.5rem;
+        background: linear-gradient(145deg, rgba(14, 25, 58, 0.92), rgba(31, 17, 57, 0.88));
+        border: 1px solid rgba(125, 227, 255, 0.28);
+        border-radius: 14px;
+        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-form label { color: #dce8ff; font-weight: 600; font-size: 0.9rem; }
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.75rem;
+        color: #ffffff;
+        background: rgba(8, 13, 33, 0.9);
+        border: 1px solid rgba(125, 227, 255, 0.35);
+        border-radius: 8px;
+        font: inherit;
+    }
+
+    .contact-form textarea { min-height: 120px; resize: vertical; }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: #9fb8e8; }
+    .contact-form button {
+        margin-top: 0.4rem;
+        padding: 0.8rem;
+        color: #071125;
+        background: linear-gradient(135deg, #00d9ff, #7de3ff);
+        border: 0;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+    .contact-form button:hover { box-shadow: 0 0 20px rgba(0, 217, 255, 0.35); }
 
     .gallery-counter {
         color: #9fb8e8 !important;
@@ -412,17 +450,28 @@ with contact_left:
     st.markdown('</div>', unsafe_allow_html=True)
 
 with contact_right:
-    with st.form("contact_form", clear_on_submit=False):
-        name = st.text_input("Tu nombre")
-        email = st.text_input("Tu correo")
-        topic = st.selectbox("¿En qué te puedo ayudar?", ["Automatización", "Análisis de datos", "TESOROWEB", "Otro proyecto"])
-        message = st.text_area("Cuéntame brevemente tu idea", height=120)
-        submitted = st.form_submit_button("✉️ Preparar mensaje")
-        if submitted:
-            subject = quote(f"Consulta sobre {topic}")
-            body = quote(f"Hola Dioyerly, soy {name}.\n\nMi correo: {email}\n\n{message}")
-            st.success("Tu mensaje está listo para enviarse desde tu correo.")
-            st.markdown(f'[Abrir correo con el mensaje preparado](mailto:dioyer321@gmail.com?subject={subject}&body={body})')
+    st.markdown("""
+        <form class="contact-form" action="https://formsubmit.co/dioyer321@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Nueva consulta desde tu portafolio">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="true">
+            <input type="hidden" name="_next" value="https://tesoroweb-portfolio-gqb4lcqngpomudwmwks4xy.streamlit.app/">
+            <label for="contact-name">Tu nombre</label>
+            <input id="contact-name" type="text" name="name" placeholder="¿Cómo te llamas?" required>
+            <label for="contact-email">Tu correo</label>
+            <input id="contact-email" type="email" name="email" placeholder="tu@correo.com" required>
+            <label for="contact-topic">¿En qué te puedo ayudar?</label>
+            <select id="contact-topic" name="topic" required>
+                <option value="Automatización">Automatización</option>
+                <option value="Análisis de datos">Análisis de datos</option>
+                <option value="TESOROWEB">TESOROWEB</option>
+                <option value="Otro proyecto">Otro proyecto</option>
+            </select>
+            <label for="contact-message">Cuéntame brevemente tu idea</label>
+            <textarea id="contact-message" name="message" placeholder="¿Qué necesitas resolver?" required></textarea>
+            <button type="submit">✉️ Enviar consulta</button>
+        </form>
+    """, unsafe_allow_html=True)
 
 st.markdown("---")
 
