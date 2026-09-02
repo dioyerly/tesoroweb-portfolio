@@ -184,46 +184,6 @@ st.markdown("""
     .contact-link:hover { border-color: #7de3ff; background: rgba(0, 217, 255, 0.12); }
     .contact-link img { width: 25px; height: 25px; vertical-align: middle; margin-right: 0.45rem; }
 
-    .contact-form {
-        display: flex;
-        flex-direction: column;
-        gap: 0.65rem;
-        padding: 1.5rem;
-        background: linear-gradient(145deg, rgba(14, 25, 58, 0.92), rgba(31, 17, 57, 0.88));
-        border: 1px solid rgba(125, 227, 255, 0.28);
-        border-radius: 14px;
-        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.2);
-    }
-
-    .contact-form label { color: #dce8ff; font-weight: 600; font-size: 0.9rem; }
-    .contact-form input,
-    .contact-form select,
-    .contact-form textarea {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 0.75rem;
-        color: #ffffff;
-        background: rgba(8, 13, 33, 0.9);
-        border: 1px solid rgba(125, 227, 255, 0.35);
-        border-radius: 8px;
-        font: inherit;
-    }
-
-    .contact-form textarea { min-height: 120px; resize: vertical; }
-    .contact-form input::placeholder,
-    .contact-form textarea::placeholder { color: #9fb8e8; }
-    .contact-form button {
-        margin-top: 0.4rem;
-        padding: 0.8rem;
-        color: #071125;
-        background: linear-gradient(135deg, #00d9ff, #7de3ff);
-        border: 0;
-        border-radius: 8px;
-        font-weight: 700;
-        cursor: pointer;
-    }
-    .contact-form button:hover { box-shadow: 0 0 20px rgba(0, 217, 255, 0.35); }
-
     .gallery-counter {
         color: #9fb8e8 !important;
         text-align: center;
@@ -443,35 +403,15 @@ st.markdown('<h2 id="contacto" class="section-title">📞 Conectemos</h2>', unsa
 contact_left, contact_right = st.columns([0.85, 1.15], gap="large")
 with contact_left:
     st.markdown('<div class="contact-panel">', unsafe_allow_html=True)
-    st.markdown('<p style="color: #c9d6ff; margin-top: 0;">Cuéntame qué proceso quieres automatizar o qué producto digital tienes en mente.</p>', unsafe_allow_html=True)
+    st.markdown('<p style="color: #c9d6ff; margin-top: 0;">Cuéntame qué proceso quieres automatizar o qué producto digital tienes en mente. Puedes escribirme directamente.</p>', unsafe_allow_html=True)
     st.markdown('<a class="contact-link" href="https://wa.me/5811126425994" target="_blank"><img src="https://cdn.simpleicons.org/whatsapp/25D366">WhatsApp</a>', unsafe_allow_html=True)
+    st.markdown('<br><a class="contact-link" href="mailto:dioyer321@gmail.com"><img src="https://cdn.simpleicons.org/gmail/EA4335">Enviar correo</a>', unsafe_allow_html=True)
     st.markdown('<br><a class="contact-link" href="https://www.linkedin.com/in/dioyerly-rodriguez-349992255/" target="_blank"><img src="https://cdn.simpleicons.org/linkedin/0A66C2">LinkedIn</a>', unsafe_allow_html=True)
     st.markdown('<br><a class="contact-link" href="https://github.com/dioyerly/tesoroweb-portfolio" target="_blank"><img src="https://cdn.simpleicons.org/github/FFFFFF">GitHub</a>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
 with contact_right:
-    st.markdown("""
-        <form class="contact-form" action="https://formsubmit.co/dioyer321@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="Nueva consulta desde tu portafolio">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="true">
-            <input type="hidden" name="_next" value="https://tesoroweb-portfolio-gqb4lcqngpomudwmwks4xy.streamlit.app/">
-            <label for="contact-name">Tu nombre</label>
-            <input id="contact-name" type="text" name="name" placeholder="¿Cómo te llamas?" required>
-            <label for="contact-email">Tu correo</label>
-            <input id="contact-email" type="email" name="email" placeholder="tu@correo.com" required>
-            <label for="contact-topic">¿En qué te puedo ayudar?</label>
-            <select id="contact-topic" name="topic" required>
-                <option value="Automatización">Automatización</option>
-                <option value="Análisis de datos">Análisis de datos</option>
-                <option value="TESOROWEB">TESOROWEB</option>
-                <option value="Otro proyecto">Otro proyecto</option>
-            </select>
-            <label for="contact-message">Cuéntame brevemente tu idea</label>
-            <textarea id="contact-message" name="message" placeholder="¿Qué necesitas resolver?" required></textarea>
-            <button type="submit">✉️ Enviar consulta</button>
-        </form>
-    """, unsafe_allow_html=True)
+    st.markdown('<div class="contact-panel"><h3 style="color: #7de3ff; margin-top: 0;">¿Hablamos?</h3><p style="color: #dce8ff;">Para enviar una consulta, pulsa “Enviar correo”. Se abrirá tu aplicación de correo con mi dirección lista.</p><p style="color: #9fb8e8; font-size: 0.9rem;">No dejo un formulario que dependa de servicios externos o pueda fallar.</p></div>', unsafe_allow_html=True)
 
 st.markdown("---")
 
