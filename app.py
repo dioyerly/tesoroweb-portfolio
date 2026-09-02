@@ -411,7 +411,7 @@ with contact_left:
     st.markdown('</div>', unsafe_allow_html=True)
 
 with contact_right:
-    st.markdown('<div class="contact-panel"><h3 style="color: #7de3ff; margin-top: 0;">¿Hablamos?</h3><p style="color: #dce8ff;">Para enviar una consulta, pulsa “Enviar correo”. Se abrirá tu aplicación de correo con mi dirección lista.</p><p style="color: #9fb8e8; font-size: 0.9rem;">No dejo un formulario que dependa de servicios externos o pueda fallar.</p></div>', unsafe_allow_html=True)
+    st.markdown('<div class="contact-panel"><h3 style="color: #7de3ff; margin-top: 0;">¿Hablamos?</h3><p style="color: #dce8ff;">Cuéntame qué proceso quieres automatizar o qué producto digital tienes en mente.</p></div>', unsafe_allow_html=True)
 
 st.markdown("---")
 
