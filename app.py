@@ -1,38 +1,22 @@
+from pathlib import Path
+
 import streamlit as st
 
-# Configuración de página
 st.set_page_config(
-    page_title="TESOROWEB",
+    page_title="Dioyerly Rodriguez - Data Scientist & AI",
     page_icon="🚀",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# CSS personalizado
+# CSS
 st.markdown("""
     <style>
-    :root {
-        --primary: #00d9ff;
-        --secondary: #9d4edd;
-        --bg: #0a0e27;
-        --text: #e0e0e0;
-    }
-    
-    * {
-        margin: 0;
-        padding: 0;
-    }
-    
     body {
         background-color: #0a0e27;
         color: #e0e0e0;
     }
     
-    .main {
-        background-color: #0a0e27;
-    }
-    
-    /* HERO */
     .hero-section {
         text-align: center;
         padding: 4rem 2rem;
@@ -47,26 +31,12 @@ st.markdown("""
         background: linear-gradient(135deg, #00d9ff, #9d4edd);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
     }
     
     .hero-subtitle {
-        font-size: 1.3rem;
-        color: #b0b0b0;
-        margin-bottom: 2rem;
-    }
-    
-    /* CARDS */
-    .feature-card {
-        background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(157, 78, 221, 0.05));
-        border: 1px solid rgba(0, 217, 255, 0.2);
-        padding: 2rem;
-        border-radius: 15px;
-        text-align: center;
-    }
-    
-    .feature-icon {
-        font-size: 3rem;
+        font-size: 1.5rem;
+        color: #00d9ff;
         margin-bottom: 1rem;
     }
     
@@ -79,10 +49,17 @@ st.markdown("""
         text-align: center;
     }
     
-    .tech-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 1rem;
+    .project-card {
+        background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(157, 78, 221, 0.05));
+        border: 1px solid rgba(0, 217, 255, 0.2);
+        padding: 2rem;
+        border-radius: 15px;
+        margin-bottom: 2rem;
+    }
+    
+    .project-card:hover {
+        border-color: rgba(0, 217, 255, 0.5);
+        box-shadow: 0 0 30px rgba(0, 217, 255, 0.1);
     }
     
     .tech-item {
@@ -93,38 +70,11 @@ st.markdown("""
         text-align: center;
     }
     
-    .tech-icon {
-        font-size: 2.5rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .price-card {
-        background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(0, 217, 255, 0.05));
-        border: 2px solid rgba(0, 217, 255, 0.2);
-        padding: 2rem;
-        border-radius: 15px;
-        text-align: center;
-    }
-    
-    .price-number {
-        font-size: 2.5rem;
-        color: #9d4edd;
-        font-weight: 700;
-        margin: 1rem 0;
-    }
-    
     .stButton > button {
         background: linear-gradient(135deg, #00d9ff, #3a86ff) !important;
         color: #0a0e27 !important;
         font-weight: 600 !important;
         border-radius: 8px !important;
-        padding: 0.6rem 1.5rem !important;
-        width: 100%;
-    }
-    
-    .stButton > button:hover {
-        transform: translateY(-3px) !important;
-        box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3) !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -132,11 +82,11 @@ st.markdown("""
 # HEADER
 st.markdown("""
     <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; border-bottom: 1px solid rgba(0, 217, 255, 0.1); margin-bottom: 2rem;">
-        <h1 style="margin: 0; background: linear-gradient(135deg, #00d9ff, #9d4edd); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">🚀 TESOROWEB</h1>
-        <div style="display: flex; gap: 2rem;">
-            <a href="#funcionalidades" style="color: #e0e0e0; text-decoration: none;">Funcionalidades</a>
-            <a href="#stack" style="color: #e0e0e0; text-decoration: none;">Stack</a>
-            <a href="#precios" style="color: #e0e0e0; text-decoration: none;">Precios</a>
+        <h1 style="margin: 0; background: linear-gradient(135deg, #00d9ff, #9d4edd); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Dioyerly Rodriguez</h1>
+        <div style="display: flex; gap: 2rem; font-size: 0.9rem;">
+            <a href="#sobre-mi" style="color: #e0e0e0; text-decoration: none;">Sobre mí</a>
+            <a href="#proyectos" style="color: #e0e0e0; text-decoration: none;">Proyectos</a>
+            <a href="#skills" style="color: #e0e0e0; text-decoration: none;">Skills</a>
             <a href="#contacto" style="color: #e0e0e0; text-decoration: none;">Contacto</a>
         </div>
     </div>
@@ -145,127 +95,145 @@ st.markdown("""
 # HERO
 st.markdown("""
     <div class="hero-section">
-        <h1 class="hero-title">Automatización Inteligente de Pagos</h1>
-        <p class="hero-subtitle">De 20 horas/mes en Excel → 2 horas con IA</p>
+        <h1 class="hero-title">Data Scientist & AI</h1>
+        <p class="hero-subtitle">Especialista en Automatización</p>
+        <p style="color: #b0b0b0; font-size: 1.1rem;">Transformo procesos manuales en soluciones inteligentes que generan impacto real</p>
     </div>
 """, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([1, 2, 1])
-with col2:
-    if st.button("📞 Solicitar Demo"):
-        st.success("¡Contacta a través de WhatsApp o Email para tu demo!")
+# SOBRE MÍ
+st.markdown('<h2 id="sobre-mi" class="section-title">👤 Sobre mí</h2>', unsafe_allow_html=True)
+
+st.markdown("""
+    Soy especialista en **Ciencia de Datos e IA** con experiencia desarrollando soluciones que automatizan procesos operacionales complejos.
+    
+    **Formación:** Administración de Empresas (Venezuela) + Data Scientist & AI (Argentina)
+    
+    **Mi enfoque:** Automatización, análisis de datos y desarrollo de soluciones inteligentes que resuelven problemas reales desde el principio hasta el final.
+    
+    Lo que me diferencia es el conocimiento profundo de los problemas operacionales y la capacidad de transformarlos en aplicaciones escalables que generan valor tangible.
+""")
 
 st.markdown("---")
 
-# FUNCIONALIDADES
-st.markdown('<h2 id="funcionalidades" class="section-title">⚡ Funcionalidades</h2>', unsafe_allow_html=True)
+# PROYECTOS
+st.markdown('<h2 id="proyectos" class="section-title">📁 Proyectos</h2>', unsafe_allow_html=True)
 
-col1, col2, col3, col4 = st.columns(4)
+# TESOROWEB
+st.markdown("""
+    <div class="project-card">
+        <h3 style="color: #00d9ff; margin-bottom: 0.5rem;">🚀 TESOROWEB</h3>
+        <p style="color: #9d4edd; font-size: 1.1rem; margin-bottom: 1rem;"><strong>Plataforma SaaS de Gestión de Pagos</strong></p>
+        <p style="color: #b0b0b0; margin-bottom: 1rem;">Automatización inteligente de tesorería que ahorra 20+ horas/mes y elimina errores manuales.</p>
+        <p style="margin: 1rem 0;"><strong>Funcionalidades:</strong></p>
+        <p style="color: #b0b0b0;">
+        ✓ Extracción automática de PDFs (OCR) | 
+        ✓ Conciliación inteligente con banco | 
+        ✓ Dashboard de gastos vs ventas | 
+        ✓ Multi-empresa y multi-usuario | 
+        ✓ Reportes automáticos para auditoría
+        </p>
+        <p style="margin-top: 1rem;"><strong>Beneficios principales:</strong><br>
+        → Ahorra 20 horas/mes en tesorería<br>
+        → Automatiza pagos sin errores<br>
+        → Control total de flujo de caja
+        </p>
+        <p style="margin-top: 1rem;"><strong>Stack:</strong> Python, Flask, SQLite, JavaScript, PDF Processing, IA</p>
+        <p style="color: #888; font-size: 0.9rem; margin-top: 1rem;">⏱️ 2 meses de desarrollo | 🎯 Buscando clientes</p>
+    </div>
+""", unsafe_allow_html=True)
 
-with col1:
-    st.markdown("""
-        <div class="feature-card">
-            <div class="feature-icon">📄</div>
-            <h3 style="color: #00d9ff;">Extracción Automática</h3>
-            <p style="color: #b0b0b0;">Sube PDF → La IA lee automáticamente</p>
-        </div>
-    """, unsafe_allow_html=True)
+st.markdown('<h3 style="color: #00d9ff; text-align: center; margin: 2rem 0 1.5rem;">Una mirada a TESOROWEB</h3>', unsafe_allow_html=True)
 
-with col2:
-    st.markdown("""
-        <div class="feature-card">
-            <div class="feature-icon">✅</div>
-            <h3 style="color: #00d9ff;">Conciliación Inteligente</h3>
-            <p style="color: #b0b0b0;">Compara con banco automáticamente</p>
-        </div>
-    """, unsafe_allow_html=True)
-
-with col3:
-    st.markdown("""
-        <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h3 style="color: #00d9ff;">Dashboard de Gastos</h3>
-            <p style="color: #b0b0b0;">Visualiza gasto por proveedor</p>
-        </div>
-    """, unsafe_allow_html=True)
-
-with col4:
-    st.markdown("""
-        <div class="feature-card">
-            <div class="feature-icon">🎯</div>
-            <h3 style="color: #00d9ff;">Control Total</h3>
-            <p style="color: #b0b0b0;">Cero errores, auditoría completa</p>
-        </div>
-    """, unsafe_allow_html=True)
-
-st.markdown("---")
-
-# STACK TECNOLÓGICO
-st.markdown('<h2 id="stack" class="section-title">💻 Stack Tecnológico</h2>', unsafe_allow_html=True)
-
-tech_items = [
-    ("🐍", "Python"),
-    ("⚡", "Flask"),
-    ("💾", "SQLite"),
-    ("🎨", "HTML/CSS"),
-    ("✨", "JavaScript"),
-    ("🤖", "IA/PDF"),
-    ("📊", "Conciliación"),
-    ("🔐", "Seguridad"),
+project_images = [
+    ("Panel de control de tesorería", "PANEL DE CONTROLDE TESORERIA.PNG"),
+    ("Conciliación de pagos", "CONCILIACION DE PAGOS.PNG"),
+    ("Procesamiento e ingreso de pagos", "PROCESAMIENTO EINGRESO DE PAGOS.PNG"),
+    ("Consola de pagos programados", "CONSOLA DE PAGOS PROGRAMADOS.PNG"),
+    ("Administración de proveedores", "PANEL ADMIN PROVEEDORES.PNG"),
+    ("Administración de sociedades", "PANEL ADMIN SOCIEDADES.PNG"),
+    ("Administración de usuarios", "PANEL ADMIN USUARIOS.PNG"),
 ]
 
-cols = st.columns(len(tech_items))
-for i, (icon, tech) in enumerate(tech_items):
-    with cols[i]:
-        st.markdown(f"""
-            <div class="tech-item">
-                <div class="tech-icon">{icon}</div>
-                <p style="color: #e0e0e0;">{tech}</p>
-            </div>
-        """, unsafe_allow_html=True)
+image_columns = st.columns(2)
+for index, (caption, filename) in enumerate(project_images):
+    image_path = Path(__file__).parent / "imagenes" / filename
+    with image_columns[index % 2]:
+        if image_path.exists():
+            st.image(str(image_path), caption=caption, use_container_width=True)
+
+col1, col2 = st.columns(2)
+with col1:
+    if st.button("📽️ Ver Demo TESOROWEB", key="tesoroweb_demo"):
+        st.info("📍 Link a la demo: [Próximamente]")
+with col2:
+    if st.button("💻 Repositorio GitHub", key="tesoroweb_repo"):
+        st.info("📍 GitHub: github.com/dioyerly/tesoroweb-portfolio")
 
 st.markdown("---")
 
-# PRECIOS
-st.markdown('<h2 id="precios" class="section-title">💰 Planes</h2>', unsafe_allow_html=True)
+# OTROS PROYECTOS
+st.markdown("""
+    <div class="project-card">
+        <h3 style="color: #00d9ff; margin-bottom: 1rem;">📧 Sistema de Agenda + Recordatorios</h3>
+        <p style="color: #b0b0b0;">Sistema automático de recordatorios por email para tareas y eventos. Gestión completa de calendario con notificaciones inteligentes.</p>
+        <p style="margin-top: 1rem;"><strong>Stack:</strong> Python, Flask, Email Automation</p>
+    </div>
+""", unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns(3)
+st.markdown("""
+    <div class="project-card">
+        <h3 style="color: #00d9ff; margin-bottom: 1rem;">🔄 Conciliación Automática</h3>
+        <p style="color: #b0b0b0;">Comparación y conciliación inteligente entre facturas del sistema de gestión interno vs ARCA. Detección automática de discrepancias y generación de reportes.</p>
+        <p style="margin-top: 1rem;"><strong>Stack:</strong> Python, Data Processing, SQL</p>
+    </div>
+""", unsafe_allow_html=True)
 
-with col1:
-    st.markdown("""
-        <div class="price-card">
-            <h3 style="color: #00d9ff;">Starter</h3>
-            <div class="price-number">$2.990</div>
-            <p>/mes • Hasta 100 pagos</p>
-            <p style="font-size: 0.9rem; color: #b0b0b0;">1 usuario</p>
-        </div>
-    """, unsafe_allow_html=True)
-    if st.button("Comenzar", key="starter"):
-        st.info("Contáctanos para más detalles")
+st.markdown("""
+    <div class="project-card">
+        <h3 style="color: #00d9ff; margin-bottom: 1rem;">📄 Transcripción de PDFs</h3>
+        <p style="color: #b0b0b0;">Herramienta para transcribir y limpiar datos de resúmenes de tarjetas corporativas. Extrae información y la adapta automáticamente para subir al sistema de gestión.</p>
+        <p style="margin-top: 1rem;"><strong>Stack:</strong> Python, OCR, PDF Processing, Data Cleaning</p>
+    </div>
+""", unsafe_allow_html=True)
 
-with col2:
-    st.markdown("""
-        <div class="price-card" style="border-color: #9d4edd; box-shadow: 0 0 30px rgba(157, 78, 221, 0.2);">
-            <h3 style="color: #00d9ff;">Profesional ⭐</h3>
-            <div class="price-number">$4.990</div>
-            <p>/mes • Hasta 500 pagos</p>
-            <p style="font-size: 0.9rem; color: #b0b0b0;">3 usuarios</p>
-        </div>
-    """, unsafe_allow_html=True)
-    if st.button("Comenzar", key="pro"):
-        st.info("¡La opción más popular!")
+st.markdown("""
+    <div class="project-card">
+        <h3 style="color: #00d9ff; margin-bottom: 1rem;">🏢 Sistema Integral de Gestión</h3>
+        <p style="color: #b0b0b0;">Plataforma completa que integra agenda, tareas repetitivas, carga en lote a Odoo, gestión de cuentas de empleados, descarga de planillas de nómina y pagos a proveedores.</p>
+        <p style="margin-top: 1rem;"><strong>Stack:</strong> Python, Flask, Odoo API, SQL, JavaScript</p>
+    </div>
+""", unsafe_allow_html=True)
 
-with col3:
-    st.markdown("""
-        <div class="price-card">
-            <h3 style="color: #00d9ff;">Enterprise</h3>
-            <div class="price-number">$7.990</div>
-            <p>/mes • Ilimitado</p>
-            <p style="font-size: 0.9rem; color: #b0b0b0;">10 usuarios</p>
-        </div>
-    """, unsafe_allow_html=True)
-    if st.button("Contactar", key="enterprise"):
-        st.info("Solución empresarial personalizada")
+st.markdown("---")
+
+# SKILLS
+st.markdown('<h2 id="skills" class="section-title">💻 Stack Tecnológico & Skills</h2>', unsafe_allow_html=True)
+
+skills = [
+    ("🐍", "Python"),
+    ("⚡", "Flask"),
+    ("💾", "SQL/SQLite"),
+    ("🎨", "HTML/CSS"),
+    ("✨", "JavaScript"),
+    ("🤖", "IA/ML"),
+    ("📊", "Data Analysis"),
+    ("🔐", "Seguridad"),
+    ("📄", "OCR/PDF"),
+    ("🔄", "Conciliación"),
+    ("📈", "Visualización"),
+    ("🚀", "Automatización"),
+]
+
+cols = st.columns(4)
+for i, (icon, skill) in enumerate(skills):
+    with cols[i % 4]:
+        st.markdown(f"""
+            <div class="tech-item">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">{icon}</div>
+                <p style="color: #e0e0e0; font-size: 0.9rem;">{skill}</p>
+            </div>
+        """, unsafe_allow_html=True)
 
 st.markdown("---")
 
@@ -275,7 +243,7 @@ st.markdown('<h2 id="contacto" class="section-title">📞 Contacto</h2>', unsafe
 st.markdown("""
     <div style="text-align: center; padding: 2rem;">
         <p style="font-size: 1.1rem; color: #b0b0b0; margin-bottom: 2rem;">
-            ¿Interesado? Solicita una demo sin compromiso
+            ¿Interesado en trabajar juntos? Conectemos
         </p>
     </div>
 """, unsafe_allow_html=True)
@@ -283,17 +251,19 @@ st.markdown("""
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.markdown("[💬 WhatsApp](https://wa.me/5491234567890)", unsafe_allow_html=True)
+    st.markdown("[💬 WhatsApp](https://wa.me/5811126425994)")
 
 with col2:
-    st.markdown("[📧 Email](mailto:info@tesoroweb.com)", unsafe_allow_html=True)
+    st.markdown("[📧 Email](mailto:dioyer321@gmail.com)")
 
 with col3:
-    st.markdown("[🔗 LinkedIn](https://linkedin.com)", unsafe_allow_html=True)
+    st.markdown("[🔗 LinkedIn](https://www.linkedin.com/in/dioyerly-rodriguez-349992255/)")
+
+st.markdown("---")
 
 # FOOTER
 st.markdown("""
-    <div style="text-align: center; padding: 2rem; border-top: 1px solid rgba(0, 217, 255, 0.1); color: #888; font-size: 0.9rem; margin-top: 3rem;">
-        <p>&copy; 2026 TESOROWEB. Automatización de pagos para pymes.</p>
+    <div style="text-align: center; padding: 2rem; border-top: 1px solid rgba(0, 217, 255, 0.1); color: #888; font-size: 0.9rem;">
+        <p>&copy; 2026 Dioyerly Rodriguez. Todos los derechos reservados.</p>
     </div>
 """, unsafe_allow_html=True)
