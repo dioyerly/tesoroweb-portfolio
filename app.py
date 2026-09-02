@@ -185,6 +185,19 @@ st.markdown("""
 
     .contact-link:hover { border-color: #7de3ff; background: rgba(0, 217, 255, 0.12); }
     .contact-link img { width: 25px; height: 25px; vertical-align: middle; margin-right: 0.45rem; }
+
+    .gallery-counter {
+        color: #9fb8e8 !important;
+        text-align: center;
+        font-size: 0.82rem;
+        margin: 0.2rem 0 0.7rem;
+    }
+
+    .gallery-arrow button {
+        min-height: 3rem !important;
+        font-size: 1.5rem !important;
+        padding: 0 !important;
+    }
     
     .stButton > button {
         background: linear-gradient(135deg, #00d9ff, #3a86ff) !important;
@@ -259,7 +272,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-st.markdown('<h3 style="color: #00d9ff; text-align: center; margin: 2rem 0 1.5rem;">Una mirada a TESOROWEB</h3>', unsafe_allow_html=True)
+st.markdown('<h3 style="color: #00d9ff; text-align: center; margin: 1.5rem 0 0.5rem;">Una mirada a TESOROWEB</h3>', unsafe_allow_html=True)
 
 project_images = [
     ("Panel de control de tesorería", "PANEL DE CONTROLDE TESORERIA.PNG"),
@@ -271,12 +284,33 @@ project_images = [
     ("Administración de usuarios", "PANEL ADMIN USUARIOS.PNG"),
 ]
 
-image_columns = st.columns(2)
-for index, (caption, filename) in enumerate(project_images):
-    image_path = Path(__file__).parent / "imagenes" / filename
-    with image_columns[index % 2]:
-        if image_path.exists():
-            st.image(str(image_path), caption=caption, use_container_width=True)
+if "project_image_index" not in st.session_state:
+    st.session_state.project_image_index = 0
+
+gallery_images = [
+    (caption, Path(__file__).parent / "imagenes" / filename)
+    for caption, filename in project_images
+    if (Path(__file__).parent / "imagenes" / filename).exists()
+]
+
+if gallery_images:
+    previous, image_area, next_image = st.columns([1, 10, 1], vertical_alignment="center")
+    with previous:
+        if st.button("‹", key="previous_project_image", help="Imagen anterior"):
+            st.session_state.project_image_index = (st.session_state.project_image_index - 1) % len(gallery_images)
+    with image_area:
+        current_index = st.session_state.project_image_index % len(gallery_images)
+        caption, image_path = gallery_images[current_index]
+        st.image(str(image_path), caption=caption, use_container_width=True)
+        st.markdown(
+            f'<p class="gallery-counter">{current_index + 1} / {len(gallery_images)} · Usa las flechas para explorar</p>',
+            unsafe_allow_html=True,
+        )
+    with next_image:
+        if st.button("›", key="next_project_image", help="Imagen siguiente"):
+            st.session_state.project_image_index = (st.session_state.project_image_index + 1) % len(gallery_images)
+else:
+    st.info("Las capturas de TESOROWEB todavía no están disponibles.")
 
 col1, col2 = st.columns(2)
 with col1:
