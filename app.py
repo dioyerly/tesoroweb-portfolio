@@ -55,6 +55,11 @@ st.markdown("""
         margin-bottom: 2rem;
     }
     
+    .project-card:hover {
+        border-color: rgba(0, 217, 255, 0.5);
+        box-shadow: 0 0 30px rgba(0, 217, 255, 0.1);
+    }
+    
     .tech-item {
         background: rgba(0, 217, 255, 0.05);
         border: 1px solid rgba(0, 217, 255, 0.1);
@@ -68,7 +73,6 @@ st.markdown("""
         color: #0a0e27 !important;
         font-weight: 600 !important;
         border-radius: 8px !important;
-        width: 100%;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -89,9 +93,9 @@ st.markdown("""
 # HERO
 st.markdown("""
     <div class="hero-section">
-        <h1 class="hero-title">Data Scientist & AI Developer</h1>
-        <p class="hero-subtitle">Automatización · IA · Gestión de Datos</p>
-        <p style="color: #b0b0b0; font-size: 1.1rem;">Transformo procesos manuales en soluciones inteligentes</p>
+        <h1 class="hero-title">Data Scientist & AI</h1>
+        <p class="hero-subtitle">Especialista en Automatización</p>
+        <p style="color: #b0b0b0; font-size: 1.1rem;">Transformo procesos manuales en soluciones inteligentes que generan impacto real</p>
     </div>
 """, unsafe_allow_html=True)
 
@@ -99,16 +103,13 @@ st.markdown("""
 st.markdown('<h2 id="sobre-mi" class="section-title">👤 Sobre mí</h2>', unsafe_allow_html=True)
 
 st.markdown("""
-    Soy especialista en **Ciencia de Datos e IA** con experiencia desarrollando soluciones que automatizan procesos complejos.
+    Soy especialista en **Ciencia de Datos e IA** con experiencia desarrollando soluciones que automatizan procesos operacionales complejos.
     
-    Mi enfoque: convertir problemas operacionales en aplicaciones escalables que generan impacto real.
+    **Formación:** Administración de Empresas (Venezuela) + Data Scientist & AI (Argentina)
     
-    **Áreas de expertise:**
-    - Automatización con IA y OCR
-    - Gestión de datos y procesamiento
-    - Desarrollo de aplicaciones SaaS
-    - Reconocimiento de patrones
-    - Conciliación automática de datos
+    **Mi enfoque:** Automatización, análisis de datos y desarrollo de soluciones inteligentes que resuelven problemas reales desde el principio hasta el final.
+    
+    Lo que me diferencia es el conocimiento profundo de los problemas operacionales y la capacidad de transformarlos en aplicaciones escalables que generan valor tangible.
 """)
 
 st.markdown("---")
@@ -119,28 +120,69 @@ st.markdown('<h2 id="proyectos" class="section-title">📁 Proyectos</h2>', unsa
 # TESOROWEB
 st.markdown("""
     <div class="project-card">
-        <h3 style="color: #00d9ff; margin-bottom: 1rem;">🚀 TESOROWEB - Automatización de Gestión de Pagos</h3>
-        <p style="color: #b0b0b0;">Plataforma SaaS que automatiza 80% del trabajo manual en tesorería usando IA.</p>
+        <h3 style="color: #00d9ff; margin-bottom: 0.5rem;">🚀 TESOROWEB</h3>
+        <p style="color: #9d4edd; font-size: 1.1rem; margin-bottom: 1rem;"><strong>Plataforma SaaS de Gestión de Pagos</strong></p>
+        <p style="color: #b0b0b0; margin-bottom: 1rem;">Automatización inteligente de tesorería que ahorra 20+ horas/mes y elimina errores manuales.</p>
         <p style="margin: 1rem 0;"><strong>Funcionalidades:</strong></p>
         <p style="color: #b0b0b0;">
         ✓ Extracción automática de PDFs (OCR) | 
         ✓ Conciliación inteligente con banco | 
         ✓ Dashboard de gastos vs ventas | 
-        ✓ Multi-empresa y multi-usuario
+        ✓ Multi-empresa y multi-usuario | 
+        ✓ Reportes automáticos para auditoría
         </p>
-        <p style="margin-top: 1rem;"><strong>Stack:</strong> Python, Flask, SQLite, JavaScript, PDF Processing</p>
+        <p style="margin-top: 1rem;"><strong>Beneficios principales:</strong><br>
+        → Ahorra 20 horas/mes en tesorería<br>
+        → Automatiza pagos sin errores<br>
+        → Control total de flujo de caja
+        </p>
+        <p style="margin-top: 1rem;"><strong>Stack:</strong> Python, Flask, SQLite, JavaScript, PDF Processing, IA</p>
+        <p style="color: #888; font-size: 0.9rem; margin-top: 1rem;">⏱️ 2 meses de desarrollo | 🎯 Buscando clientes</p>
     </div>
 """, unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
-
 with col1:
-    if st.button("📽️ Ver Demo de TESOROWEB"):
-        st.info("Demo: [Link a tu app o video]")
-
+    if st.button("📽️ Ver Demo TESOROWEB", key="tesoroweb_demo"):
+        st.info("📍 Link a la demo: [Próximamente]")
 with col2:
-    if st.button("💻 Ver Repositorio"):
-        st.info("GitHub: [Link a tu repo]")
+    if st.button("💻 Repositorio GitHub", key="tesoroweb_repo"):
+        st.info("📍 GitHub: github.com/dioyerly/tesoroweb-portfolio")
+
+st.markdown("---")
+
+# OTROS PROYECTOS
+st.markdown("""
+    <div class="project-card">
+        <h3 style="color: #00d9ff; margin-bottom: 1rem;">📧 Sistema de Agenda + Recordatorios</h3>
+        <p style="color: #b0b0b0;">Sistema automático de recordatorios por email para tareas y eventos. Gestión completa de calendario con notificaciones inteligentes.</p>
+        <p style="margin-top: 1rem;"><strong>Stack:</strong> Python, Flask, Email Automation</p>
+    </div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+    <div class="project-card">
+        <h3 style="color: #00d9ff; margin-bottom: 1rem;">🔄 Conciliación Automática</h3>
+        <p style="color: #b0b0b0;">Comparación y conciliación inteligente entre facturas del sistema de gestión interno vs ARCA. Detección automática de discrepancias y generación de reportes.</p>
+        <p style="margin-top: 1rem;"><strong>Stack:</strong> Python, Data Processing, SQL</p>
+    </div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+    <div class="project-card">
+        <h3 style="color: #00d9ff; margin-bottom: 1rem;">📄 Transcripción de PDFs</h3>
+        <p style="color: #b0b0b0;">Herramienta para transcribir y limpiar datos de resúmenes de tarjetas corporativas. Extrae información y la adapta automáticamente para subir al sistema de gestión.</p>
+        <p style="margin-top: 1rem;"><strong>Stack:</strong> Python, OCR, PDF Processing, Data Cleaning</p>
+    </div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+    <div class="project-card">
+        <h3 style="color: #00d9ff; margin-bottom: 1rem;">🏢 Sistema Integral de Gestión</h3>
+        <p style="color: #b0b0b0;">Plataforma completa que integra agenda, tareas repetitivas, carga en lote a Odoo, gestión de cuentas de empleados, descarga de planillas de nómina y pagos a proveedores.</p>
+        <p style="margin-top: 1rem;"><strong>Stack:</strong> Python, Flask, Odoo API, SQL, JavaScript</p>
+    </div>
+""", unsafe_allow_html=True)
 
 st.markdown("---")
 
@@ -188,13 +230,13 @@ st.markdown("""
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.markdown("[💬 WhatsApp](https://wa.me/5491234567890)")
+    st.markdown("[💬 WhatsApp](https://wa.me/5811126425994)")
 
 with col2:
-    st.markdown("[📧 Email](mailto:dioyerly@example.com)")
+    st.markdown("[📧 Email](mailto:dioyer321@gmail.com)")
 
 with col3:
-    st.markdown("[🔗 LinkedIn](https://linkedin.com/in/dioyerly)")
+    st.markdown("[🔗 LinkedIn](https://www.linkedin.com/in/dioyerly-rodriguez-349992255/)")
 
 st.markdown("---")
 
