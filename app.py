@@ -62,12 +62,63 @@ st.markdown("""
         box-shadow: 0 0 30px rgba(0, 217, 255, 0.1);
     }
     
-    .tech-item {
-        background: rgba(0, 217, 255, 0.05);
-        border: 1px solid rgba(0, 217, 255, 0.1);
-        padding: 1.5rem;
-        border-radius: 10px;
+    .tech-group-title {
+        color: #7de3ff !important;
+        font-size: 1.35rem;
+        font-weight: 700;
+        margin: 2.2rem 0 1rem;
+        letter-spacing: 0;
+    }
+
+    .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tech-card {
+        min-height: 132px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 1rem 0.65rem;
+        background: linear-gradient(145deg, #111a3b, #18265a);
+        border: 1px solid rgba(125, 227, 255, 0.3);
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .tech-card:hover {
+        transform: translateY(-4px);
+        border-color: #7de3ff;
+        box-shadow: 0 12px 26px rgba(0, 217, 255, 0.2);
+    }
+
+    .tech-logo {
+        width: 54px;
+        height: 54px;
+        object-fit: contain;
+    }
+
+    .tech-name {
+        color: #ffffff !important;
+        font-size: 0.84rem;
+        font-weight: 600;
+        line-height: 1.2;
         text-align: center;
+        margin: 0;
+    }
+
+    @media (max-width: 900px) {
+        .tech-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 520px) {
+        .tech-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     
     .stButton > button {
@@ -211,15 +262,14 @@ st.markdown("---")
 st.markdown('<h2 id="skills" class="section-title">💻 Stack Tecnológico & Skills</h2>', unsafe_allow_html=True)
 
 def show_technologies(title, technologies):
-    st.markdown(f'<h3 style="color: #00d9ff; margin: 2rem 0 1.25rem;">{title}</h3>', unsafe_allow_html=True)
-    columns = st.columns(6)
-    for index, (name, logo_url) in enumerate(technologies):
-        with columns[index % 6]:
-            st.image(logo_url, width=58)
-            st.markdown(
-                f'<p style="text-align: center; color: #e0e0e0; font-size: 0.9rem; min-height: 2.5rem;">{name}</p>',
-                unsafe_allow_html=True,
-            )
+    cards = "".join(
+        f'<div class="tech-card"><img class="tech-logo" src="{logo_url}" alt="Logo de {name}"><p class="tech-name">{name}</p></div>'
+        for name, logo_url in technologies
+    )
+    st.markdown(
+        f'<h3 class="tech-group-title">{title}</h3><div class="tech-grid">{cards}</div>',
+        unsafe_allow_html=True,
+    )
 
 
 show_technologies("Herramientas que manejo", [
